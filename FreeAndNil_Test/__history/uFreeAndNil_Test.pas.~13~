@@ -1,0 +1,74 @@
+unit uFreeAndNil_Test;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TFormFreeAndNil = class(TForm)
+    ButtonExecTwice: TButton;
+    ButtonFreeAndFreeAndNil: TButton;
+    Button1: TButton;
+    procedure ButtonExecTwiceClick(Sender: TObject);
+    procedure ButtonFreeAndFreeAndNilClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormFreeAndNil: TFormFreeAndNil;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormFreeAndNil.Button1Click(Sender: TObject);
+var
+  myList :TList;
+begin
+  myList := TList.Create;
+
+  myList.Free;
+
+  myList := nil;
+end;
+
+procedure TFormFreeAndNil.ButtonExecTwiceClick(Sender: TObject);
+var
+  myList :TList;
+begin
+  myList := TList.Create;
+
+  //FreeAndNil myList object.
+  FreeAndNil(myList);
+
+  //Again but safety : it ignores nil objects.
+  FreeAndNil(myList);
+end;
+
+procedure TFormFreeAndNil.ButtonFreeAndFreeAndNilClick(Sender: TObject);
+var
+  myList :TList;
+begin
+  myList := TList.Create;
+
+  //Only "Free" myList object.
+  myList.Free;
+
+  //It create Error "Invalid pointer operation" : FreeAndNil() is ignore "nil objects"
+  //but, myList is still point [TList]. => Not "nil objects"
+  FreeAndNil(myList);
+end;
+
+procedure TFormFreeAndNil.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+end;
+
+end.
