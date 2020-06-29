@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.388,C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.dfm=C:\Blog_Source\FreeAndNil_Test\uFreeAndNil_Test.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.990,C:\Users\zooxo\Documents\RAD Studio\Projects\Project2.dproj=C:\Blog_Source\FreeAndNil_Test\FreeAndNil_Test.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.388,C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.pas=C:\Blog_Source\FreeAndNil_Test\uFreeAndNil_Test.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.408,=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2020-06-29 00:01:02.511,=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2020-06-29 00:01:30.388,C:\Blog_Source\FreeAndNil_Test\uFreeAndNil_Test.dfm=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.dfm</Transaction>
-    <Transaction>2020-06-29 00:01:30.388,C:\Blog_Source\FreeAndNil_Test\uFreeAndNil_Test.pas=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2020-06-29 00:01:35.990,C:\Blog_Source\FreeAndNil_Test\FreeAndNil_Test.dproj=C:\Users\zooxo\Documents\RAD Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.511,=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
   </Transactions>
 </BorlandProject>

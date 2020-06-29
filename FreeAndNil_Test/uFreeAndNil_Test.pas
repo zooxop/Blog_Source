@@ -11,10 +11,12 @@ type
     ButtonExecTwice: TButton;
     ButtonFreeAndFreeAndNil: TButton;
     ButtonIndividually: TButton;
+    ButtonReuse: TButton;
     procedure ButtonExecTwiceClick(Sender: TObject);
     procedure ButtonFreeAndFreeAndNilClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ButtonIndividuallyClick(Sender: TObject);
+    procedure ButtonReuseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,6 +41,32 @@ begin
   myList := nil;
 
   //It is not create Error even if the order changed.
+end;
+
+procedure TFormFreeAndNil.ButtonReuseClick(Sender: TObject);
+var
+  myStringList :TStringList;
+begin
+  myStringList := TStringList.Create;
+
+
+  //FreeAndNil(myStringList);
+
+  myStringList.Add('Item1');
+  myStringList.Add('Item2');
+
+  myStringList.free;
+
+  if PULONG_PTR(PByte(myStringList) - sizeof(ULONG_PTR))^ and 1 <> 0 then
+    showmessage('myStringList is Freed.');
+
+  myStringList.Add('Item3');
+
+  if PULONG_PTR(PByte(myStringList) - sizeof(ULONG_PTR))^ and 1 <> 0 then
+    showmessage('myStringList is Freed.');
+
+  ShowMessage(myStringList[0]);
+
 end;
 
 procedure TFormFreeAndNil.ButtonExecTwiceClick(Sender: TObject);

@@ -2,7 +2,7 @@ object FormFreeAndNil: TFormFreeAndNil
   Left = 0
   Top = 0
   Caption = 'Free and FreeAndNil'
-  ClientHeight = 236
+  ClientHeight = 191
   ClientWidth = 266
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -40,14 +40,5 @@ object FormFreeAndNil: TFormFreeAndNil
     Caption = 'Exec Free and assign Nil'
     TabOrder = 2
     OnClick = ButtonIndividuallyClick
-  end
-  object ButtonReuse: TButton
-    Left = 32
-    Top = 184
-    Width = 185
-    Height = 25
-    Caption = 'Reuse freed object Test'
-    TabOrder = 3
-    OnClick = ButtonReuseClick
   end
 end

@@ -10,11 +10,13 @@ type
   TFormFreeAndNil = class(TForm)
     ButtonExecTwice: TButton;
     ButtonFreeAndFreeAndNil: TButton;
-    Button1: TButton;
+    ButtonIndividually: TButton;
+    ButtonReuse: TButton;
     procedure ButtonExecTwiceClick(Sender: TObject);
     procedure ButtonFreeAndFreeAndNilClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Button1Click(Sender: TObject);
+    procedure ButtonIndividuallyClick(Sender: TObject);
+    procedure ButtonReuseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,7 +30,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormFreeAndNil.Button1Click(Sender: TObject);
+procedure TFormFreeAndNil.ButtonIndividuallyClick(Sender: TObject);
 var
   myList :TList;
 begin
@@ -37,6 +39,34 @@ begin
   myList.Free;
 
   myList := nil;
+
+  //It is not create Error even if the order changed.
+end;
+
+procedure TFormFreeAndNil.ButtonReuseClick(Sender: TObject);
+var
+  myStringList :TStringList;
+begin
+  myStringList := TStringList.Create;
+
+
+  //FreeAndNil(myStringList);
+
+  myStringList.Add('Item1');
+  myStringList.Add('Item2');
+
+  myStringList.free;
+
+  if PULONG_PTR(PByte(myStringList) - sizeof(ULONG_PTR))^ and 1 <> 0 then
+    showmessage('myStringList is Freed.');
+
+  myStringList.Add('Item3');
+
+  if PULONG_PTR(PByte(myStringList) - sizeof(ULONG_PTR))^ and 1 <> 0 then
+    showmessage('myStringList is Freed.');
+
+  ShowMessage(myStringList[0]);
+
 end;
 
 procedure TFormFreeAndNil.ButtonExecTwiceClick(Sender: TObject);
@@ -64,6 +94,8 @@ begin
   //It create Error "Invalid pointer operation" : FreeAndNil() is ignore "nil objects"
   //but, myList is still point [TList]. => Not "nil objects"
   FreeAndNil(myList);
+
+  //Memo : Execute Twice "myList.Free" is create same error content. (Invalid pointer operation)
 end;
 
 procedure TFormFreeAndNil.FormClose(Sender: TObject; var Action: TCloseAction);

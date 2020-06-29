@@ -11,10 +11,12 @@ type
     ButtonExecTwice: TButton;
     ButtonFreeAndFreeAndNil: TButton;
     ButtonIndividually: TButton;
+    ButtonReuse: TButton;
     procedure ButtonExecTwiceClick(Sender: TObject);
     procedure ButtonFreeAndFreeAndNilClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ButtonIndividuallyClick(Sender: TObject);
+    procedure ButtonReuseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,6 +41,22 @@ begin
   myList := nil;
 
   //It is not create Error even if the order changed.
+end;
+
+procedure TFormFreeAndNil.ButtonReuseClick(Sender: TObject);
+var
+  myStringList :TStringList;
+begin
+  myStringList := TStringList.Create;
+
+  myStringList.destroy;
+  //FreeAndNil(myStringList);
+
+  myStringList.Add('Item1');
+  myStringList.Add('Item2');
+
+  ShowMessage(myStringList[0]);
+
 end;
 
 procedure TFormFreeAndNil.ButtonExecTwiceClick(Sender: TObject);
@@ -66,6 +84,8 @@ begin
   //It create Error "Invalid pointer operation" : FreeAndNil() is ignore "nil objects"
   //but, myList is still point [TList]. => Not "nil objects"
   FreeAndNil(myList);
+
+  //Memo : Execute Twice "myList.Free" is create same error content. (Invalid pointer operation)
 end;
 
 procedure TFormFreeAndNil.FormClose(Sender: TObject; var Action: TCloseAction);
