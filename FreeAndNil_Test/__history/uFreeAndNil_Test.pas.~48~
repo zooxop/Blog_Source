@@ -49,23 +49,29 @@ var
 begin
   myStringList := TStringList.Create;
 
-
-  //FreeAndNil(myStringList);
-
   myStringList.Add('Item1');
   myStringList.Add('Item2');
 
-  //myStringList.free;
+  myStringList.free;
 
+  //Check the object is freed.
   if PULONG_PTR(PByte(myStringList) - sizeof(ULONG_PTR))^ and 1 <> 0 then
     showmessage('myStringList is Freed.');
 
-  myStringList.Add('Item3');
+  myStringList.Add('Item3');  //This line is not create error.
 
+  //ReCheck but It is still free
   if PULONG_PTR(PByte(myStringList) - sizeof(ULONG_PTR))^ and 1 <> 0 then
     showmessage('myStringList is Freed.');
 
-  ShowMessage(myStringList[0]);
+  ShowMessage(myStringList[0]);    //message : "Item3"
+
+  FreeAndNil(myStringList);
+
+  myStringList.Add('Item4');
+
+  //myStringList 의 메모리는 해제되었지만, 여전히 TStringList 로서의 기능은 작동을 한다. (Free를 해줬음에도, Add() 가 작동함.)
+  //하지만 Free 시켜주기 전에 Add 해주었던 Item 2개는 초기화 되었음을 확인할 수 있다.
 
 end;
 

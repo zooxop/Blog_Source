@@ -57,14 +57,16 @@ begin
 
   myStringList.free;
 
+  //Check the object is freed.
   if PULONG_PTR(PByte(myStringList) - sizeof(ULONG_PTR))^ and 1 <> 0 then
     showmessage('myStringList is Freed.');
 
-
-
   myStringList.Add('Item3');
 
-  ShowMessage(myStringList[0]);
+  if PULONG_PTR(PByte(myStringList) - sizeof(ULONG_PTR))^ and 1 <> 0 then
+    showmessage('myStringList is Freed.');
+
+  ShowMessage(myStringList[0]);    //message : "Item3"
 
 end;
 
