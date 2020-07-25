@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.408,=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020-07-26 01:43:15.438,=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020-07-26 01:43:43.190,C:\Blog_Source\ProcessMessages_Test\Unit2.dfm=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2020-07-26 01:43:43.190,C:\Blog_Source\ProcessMessages_Test\Unit2.pas=C:\Users\zooxo\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020-07-26 01:43:53.094,C:\Blog_Source\ProcessMessages_Test\Processmessages_Test.dproj=C:\Users\zooxo\Documents\RAD Studio\Projects\Project2.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
