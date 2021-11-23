@@ -35,13 +35,13 @@ begin
   try
     sList := TStringList.Create;
     sList.Delimiter := '|';
-    sList.DelimitedText := 'AAA|BB B|CCC|DDD|EEE';
+    sList.DelimitedText := 'AAA|BB B|CCC|DDD|EEE';  //값 대입과 동시에 분할이 이루어진다.
 
     Memo1.Lines.Clear;
-    Memo1.Lines := sList;
-
-  finally
-    sList.Free;
+    Memo1.Lines := sList; //sList[0] = AAA
+                          //sList[1] = BB
+  finally                 //sList[2] = B
+    sList.Free;           //sList[3] = CCC  ....
   end;
 end;
 
@@ -51,11 +51,14 @@ var
 begin
   try
     sList := TStringList.Create;
-    sList.Delimiter := '|';
-    sList.DelimitedText := 'AAA|BBB|CCC|DDD|EEE';
+    sList.Add('AAA');
+    sList.Add('BBB');
+    sList.Add('CCC');
+    sList.Add('DDD');
+    sList.Add('EEE');
 
     Memo1.Lines.Clear;
-    Memo1.Lines.Text := sList.CommaText;
+    Memo1.Lines.Text := sList.CommaText;  //AAA,BBB,CCC,DDD,EEE
 
   finally
     sList.Free;
@@ -65,18 +68,17 @@ end;
 procedure TForm1.Button3Click(Sender: TObject);
 var
   sList :TStringList;
-  idx :Integer;
 begin
   try
     sList := TStringList.Create;
-    sList.LineBreak := '<>';
+    sList.LineBreak := '<>';      // String 타입
     sList.Text := 'AAA<>BBB<>CCC<>DDD<>EEE';
 
     Memo1.Lines.Clear;
-    Memo1.Lines := sList;
-
-  finally
-    sList.Free;
+    Memo1.Lines := sList;  //sList[0] = AAA
+                           //sList[1] = BBB
+  finally                  //sList[2] = CCC
+    sList.Free;            //sList[3] = DDD  ....
   end;
 end;
 
