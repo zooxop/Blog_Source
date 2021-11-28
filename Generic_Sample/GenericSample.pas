@@ -7,13 +7,13 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
 
 type
-  TSample<T> = class
+  TSample<T> = class  // T : Type. Object type도 인자로 받을 수 있다.
     private
       FValue :T;
     public
       function GetValue :T;
       procedure SetValue(param :T);
-      property Value :T  read FValue write SetValue;
+      property Value :T  read GetValue write SetValue;
   end;
 
   TStrHashMap<TSTRING, TValue> = class(TStringList)
@@ -48,16 +48,18 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  hMapTestInt :TSample<Integer>;
-  hMapTestStr :TSample<string>;
+  GenTestInt :TSample<Integer>;
+  GenTestStr :TSample<string>;
 begin
-  hMapTestInt := TSample<Integer>.Create;
-  hMapTestInt.Value := 1;
-  ShowMessage(IntToStr(hMapTestInt.GetValue));
+  //Integer Type
+  GenTestInt := TSample<Integer>.Create;
+  GenTestInt.Value := 1;
+  ShowMessage(IntToStr(GenTestInt.GetValue));
 
-  hMapTestStr := TSample<string>.Create;
-  hMapTestStr.Value := '1';
-  ShowMessage(hMapTestStr.GetValue);
+  //String Type
+  GenTestStr := TSample<string>.Create;
+  GenTestStr.Value := '1';
+  ShowMessage(GenTestStr.GetValue);
 end;
 
 { THashMap<Integer> }
