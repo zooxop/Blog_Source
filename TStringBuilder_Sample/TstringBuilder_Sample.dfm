@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'TStringBuilderSample'
-  ClientHeight = 256
-  ClientWidth = 407
+  ClientHeight = 392
+  ClientWidth = 411
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -35,7 +35,7 @@ object Form1: TForm1
     Left = 136
     Top = 70
     Width = 263
-    Height = 178
+    Height = 315
     TabOrder = 2
   end
 end
