@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Diagnostics, System.TimeSpan;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Diagnostics, System.TimeSpan, Winapi.PsAPI;
 
 type
   TForm1 = class(TForm)
@@ -22,6 +22,8 @@ type
 
     procedure WatchStart;
     procedure WatchStop;
+
+    function CurrentMemoryUsage :Cardinal;
   end;
 
 var
@@ -57,6 +59,8 @@ begin
     StringBuilder.Free;
   end;
 
+  CurrentMemoryUsage;
+
   sString := '';
   for I := 1 to 10 do
   begin
@@ -67,9 +71,14 @@ begin
 
   showmessage('Final string length: ' + IntToStr(Length(sString)));
 
-  // 사용하는 Memory 공간은
-  // TStringBuilder와 String이 동일한 것을 알 수 있다.
+  CurrentMemoryUsage;
 
+  // 차지하는 Memory 공간은 String과 StringBuilder가 동일하지만,
+  // String은 + 연산을 통한 return을 받을 때 마다 변수 공간을 새로 할당받으면서
+  // 불필요한 Buffer size가 늘어나게 된다.
+
+  // 위처럼 반복을 통해 String 변수 값을 + 연산으로 처리하는 경우는
+  // StringBuilder를 사용하는 것이 효율적이다.
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
@@ -111,6 +120,19 @@ begin
     WatchStop;
   end;
 
+end;
+
+function TForm1.CurrentMemoryUsage: Cardinal;
+var
+  PMCnt :TProcessMemoryCounters;
+begin
+  PMCnt.cb := SizeOf(PMCnt);
+  if GetProcessMemoryInfo(GetCurrentProcess, @PMCnt, SizeOf(PMCnt)) then
+    result := PMCnt.WorkingSetSize
+  else
+    RaiseLastOSError;
+
+  showmessage(UIntToStr(REsult));
 end;
 
 procedure TForm1.WatchStart;
