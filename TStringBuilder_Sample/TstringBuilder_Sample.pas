@@ -97,7 +97,7 @@ begin
     try
       for I := 1 to 10000000 do
       begin
-        StringBuilder.Append('a');
+        StringBuilder.Append('asdfasdf');
       end;
       WatchStop;
 
@@ -115,7 +115,7 @@ begin
     WatchStart;
     for I := 1 to 10000000 do
     begin
-      sString := sString + 'a';
+      sString := sString + 'asdfasdf';
     end;
     WatchStop;
   end;
